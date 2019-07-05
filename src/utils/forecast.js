@@ -13,7 +13,11 @@ const forecast = (lat, long, callback) => {
     } else {
       const forecastString = `${body.daily.data[0].summary} It is currently ${
         body.currently.temperature
-      } °C. There is a ${body.currently.precipProbability}% chance of rain.`;
+      } °C. There is a ${
+        body.currently.precipProbability
+      }% chance of rain. Max ${body.daily.data[0].temperatureMax} °C and Min ${
+        body.daily.data[0].temperatureMin
+      } °C`;
       callback(undefined, forecastString);
     }
   });
