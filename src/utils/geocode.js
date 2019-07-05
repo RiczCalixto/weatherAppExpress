@@ -9,7 +9,7 @@ const geocode = (address, callback) => {
     if (error) {
       callback("Unable to find location", undefined);
     } else if (body.features.length === 0) {
-      callback("Please try again, unavaiable locale to search", undefined);
+      callback("Please try again, unavailable locale to search", undefined);
     } else {
       const lat = body.features[0].geometry.coordinates[1];
       const long = body.features[0].geometry.coordinates[0];

@@ -39,3 +39,7 @@ header a {
 .main-content {
   flex-grow: 1;
 }
+
+#locationInfo {
+  text-align: justify;
+}

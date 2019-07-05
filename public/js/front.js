@@ -2,20 +2,22 @@ console.log("Client side javascript !");
 
 const weatherForm = document.querySelector("form");
 const searchElement = document.querySelector("input");
+const result = document.querySelector("#locationInfo");
 
 weatherForm.addEventListener("submit", e => {
   e.preventDefault();
   const location = searchElement.value;
-  fetch(`http://localhost:3000/weather?address='${location}'`).then(
-    response => {
-      response.json().then(data => {
-        if (data.error) {
-          return console.log("Address not found");
-        }
-        console.log(data.placeName);
-        console.log(data.forecastData);
-        console.log(data.address);
-      });
-    }
-  );
+
+  result.textContent = "Loading..";
+
+  fetch(`/weather?address='${location}'`).then(response => {
+    response.json().then(data => {
+      if (data.error) {
+        return (result.textContent = data.error);
+      }
+      result.innerHTML = `Location: ${data.placeName} <br/> Forecast: ${
+        data.forecastData
+      } <br/> Address typed: ${data.address} `;
+    });
+  });
 });
